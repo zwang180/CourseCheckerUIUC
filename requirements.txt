@@ -1,0 +1,10 @@
+cssselect==0.9.1
+html5lib==0.999999999
+keyring==10.3.2
+lxml==3.6.0
+mechanize==0.3.3
+pycrypto==2.6.1
+pyquery==1.2.13
+six==1.10.0
+termcolor==1.1.0
+webencodings==0.5.1

@@ -1,0 +1,7 @@
+rebot.py
+CourseChecker/
+*.pyc
+*DS_Store
+*.icns
+*.app
+*.scpt
