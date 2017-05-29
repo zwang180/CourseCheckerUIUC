@@ -12,6 +12,7 @@ import time
 import mechanize
 import cookielib
 import getpass
+import csv
 
 UNAVAILABLE = ["Closed", "UNKNOWN", "Pending"]
 TITLE = "Course Checker"
@@ -24,6 +25,7 @@ class CourseChecker(object):
         self.urls = []
         self.messages = []
         self.num = 0
+        self.loggedin = False
         self.br = mechanize.Browser()
         self.cj = cookielib.LWPCookieJar()
 
@@ -51,6 +53,7 @@ class CourseChecker(object):
 
         # Login
         self.br.submit()
+        self.loggedin = True
         print('')
 
     # Take in a message dictonary
@@ -79,6 +82,20 @@ class CourseChecker(object):
         self.messages.append(message)
 
         self.num += 1
+
+    # Mainly helper method
+    def add_course_from_list(self, course):
+        year, term, subject, number, crn = course
+        self.add_course(int(year), term, subject, int(number), int(crn))
+
+    def add_course_from_csv(self, filename="./courses.csv", header=True):
+        with open(filename, 'r') as f:
+            courses = csv.reader(f.read().splitlines())
+            if header:
+                courses.next()
+
+            for course in courses:
+                self.add_course_from_list(course)
 
     def printCapacity(self, result):
         if result["cross"]:
@@ -126,7 +143,9 @@ class CourseChecker(object):
         self.freq = freq
 
     def check(self):
-        self.login()
+        if not self.loggedin:
+            self.login()
+
         while 1:
             print("------------------------------------------")
             print("Attempt at " + time.ctime())
