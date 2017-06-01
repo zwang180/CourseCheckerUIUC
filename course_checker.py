@@ -140,9 +140,11 @@ class CourseChecker(object):
 
     def setFreq(self):
         try:
-            self.freq = int(raw_input("Frequency: "))
+            self.freq = int(raw_input("Frequency(s): "))
         except:
             # Default to 10 min
+            print "Invalid Input!"
+            print "Using Default Frequency 600s"
             self.freq = 600
 
     def check(self):
