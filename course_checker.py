@@ -54,7 +54,6 @@ class CourseChecker(object):
         # Login
         self.br.submit()
         self.loggedin = True
-        print('')
 
     # Take in a message dictonary
     def notify(self, messages, available):
@@ -139,13 +138,21 @@ class CourseChecker(object):
         status = tree.xpath("//enrollmentStatus/text()")[0]
         return status
 
-    def setFreq(self, freq):
-        self.freq = freq
+    def setFreq(self):
+        try:
+            self.freq = int(raw_input("Frequency: "))
+        except:
+            # Default to 10 min
+            self.freq = 600
 
     def check(self):
         if not self.loggedin:
             self.login()
 
+        if not self.freq:
+            self.setFreq()
+
+        print('')
         while 1:
             print("------------------------------------------")
             print("Attempt at " + time.ctime())
@@ -170,4 +177,4 @@ class CourseChecker(object):
 
 
             # Default frequency to 10 min
-            time.sleep(self.freq if self.freq else 600)
+            time.sleep(self.freq)

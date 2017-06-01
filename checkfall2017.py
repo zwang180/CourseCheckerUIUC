@@ -1,12 +1,9 @@
 #! /usr/local/bin/python
 from course_checker import *
 
-# Frequency
-freq = 5 * 60
-
 # Initialize
 checker = CourseChecker()
-checker.setFreq(freq)
+# checker.setFreq(freq)
 # checker.login()
 
 # Year, Term, Subject, Number, CRN
