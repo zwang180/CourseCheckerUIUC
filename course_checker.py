@@ -84,7 +84,7 @@ class CourseChecker(object):
 
     # Mainly helper method
     def add_course_from_list(self, course):
-        year, term, subject, number, crn = course
+        year, term, subject, number, crn = course[0].split('\t')
         self.add_course(int(year), term, subject, int(number), int(crn))
 
     def add_course_from_csv(self, filename="./courses.csv", header=True):
