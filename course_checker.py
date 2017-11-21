@@ -56,7 +56,7 @@ class CourseChecker(object):
         self.loggedin = True
 
     # Take in a message dictonary
-    def notify(self, messages, available):
+    def notify(self, messages):
         t = "-title {!r}".format(TITLE)
         s = "-subtitle {!r}".format(messages["course"])
         m = "-message {!r}".format(messages["available"])
